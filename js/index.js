@@ -27,10 +27,12 @@ const siteContent = {
     "vision-content": "Vision content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
   },
   "contact": {
+    "button-hide": "Hide Address",//added for stretch task
     "contact-h4" : "Contact",
     "address" : "123 Way 456 Street Somewhere, USA",
     "phone" : "1 (888) 888-8888",
     "email" : "sales@greatidea.io",
+    "button-view": "View Address"//added for stretch task
   },
   "footer": {
     "copyright" : "Copyright Great Idea! 2018"
@@ -127,7 +129,6 @@ const visionContent = document.querySelector('section.main-content .bottom-conte
 visionContent.textContent = siteContent["main-content"]["vision-content"];
 
                            /*********************CONTACT*************************/
-
 const contactH4 = document.querySelector('section.contact h4'); 
 contactH4.textContent = siteContent["contact"]["contact-h4"];
 
@@ -140,9 +141,52 @@ contactPhoneNumber.textContent = siteContent["contact"]["phone"];
 const contactEmail = document.querySelector('section.contact p:nth-child(4)');
 contactEmail.textContent = siteContent["contact"]["email"];
 
+//added for stretch task
+const hideAddressButton = document.querySelector('section.contact button:nth-child(5)');
+hideAddressButton.textContent = siteContent["contact"]["button-hide"];
+
+const viewAddressButton = document.querySelector('section.contact button:nth-child(6)');
+viewAddressButton.textContent = siteContent["contact"]["button-view"];
+
+
                           /*********************FOOTER*************************/
                          
 const copyright = document.querySelector('footer p'); 
 copyright.textContent = siteContent["footer"]["copyright"];
 
+
+                          /*********************STRETCH TASK*************************/
+
+/*Study tomorrow's lesson on events and try to integrate a button that can update content on the site with a click of a 
+button.  You could build a similar data object with new values to help you test the click event.*/
+
+//added two buttons with event listeners that when clicked will either hide or display the address 
+const hideAddress = document.getElementById("hide-button");
+
+const viewAddress = document.getElementById("view-button");
+viewAddress.disabled = true;
+
+const hideText = () => {
+    hideAddress.disabled = true;
+    contactH4.style.display = "none";
+    contactAddress.style.display = "none";
+    contactPhoneNumber.style.display = "none";
+    contactEmail.style.display = "none"; 
+    viewAddress.disabled = false;   
+
+};
+
+const viewText = () => {
+    hideAddress.disabled = false;
+    contactH4.style.display = "block";
+    contactAddress.style.display = "block";
+    contactPhoneNumber.style.display = "block";
+    contactEmail.style.display = "block";
+    viewAddress.style.display = "inline-block";
+    viewAddress.disabled = true;
+}
+
+hideAddressButton.addEventListener('click', hideText);
+
+viewAddressButton.addEventListener('click', viewText);
 
