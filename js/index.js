@@ -37,6 +37,112 @@ const siteContent = {
   },
 };
 
+/*********************NAV*************************/
+//returns a node list with all elements matching the query string
+const navigationLinks = document.querySelectorAll('nav a');
+
+//store nav items in the JSON object in an array
+const navValues = Object.values(siteContent.nav);
+
+navigationLinks.forEach( (a , index) => {
+    a.textContent = navValues[index];        
+});
+
+/*Utilize `.appendChild()` and `.prepend()` to add two new items to the navigation system. You can call them 
+whatever you want.*/
+const newNavLink1 = document.createElement('a');//create the new element
+newNavLink1.textContent = "Team";//add text to the new element
+document.querySelector("nav").appendChild(newNavLink1);//add the new element as the last child of an existing element
+
+const newNavLink2 = document.createElement('a');//create the new element
+newNavLink2.textContent = "Innovation";//add text to the new element
+document.querySelector("nav").prepend(newNavLink2);//add the new element as the first element of an existing element
+
+//make navigation links green
+const navigationLinksColor = document.querySelectorAll("nav a");
+
+navigationLinksColor.forEach( a => {     
+  a.style.color = "green";//Change the color of the navigation text to be green. 
+});
+
 // Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+const logo = document.getElementById('logo-img');
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
+
+
+/*********************CTA*************************/
+const ctaH1 = document.querySelector('section.cta .cta-text h1');
+ctaH1.textContent = siteContent["cta"]["h1"];
+
+const ctaButton = document.querySelector('section.cta .cta-text button');
+ctaButton.textContent = siteContent["cta"]["button"];
+
+const ctaImg = document.getElementById('cta-img');
+ctaImg.setAttribute('src', siteContent["cta"]["img-src"]);
+
+
+                            /*********************MAIN CONTENT*************************/
+//Features
+
+//applied only to text-content elements that is the first child of its parent
+const featuresH4 = document.querySelector('.main-content .top-content .text-content:nth-child(1) > h4');
+featuresH4.textContent = siteContent["main-content"]["features-h4"];
+
+const featuresContent = document.querySelector('.main-content .top-content .text-content:nth-child(1) > p');
+featuresContent.textContent = siteContent["main-content"]["features-content"];
+
+
+//About
+
+//applied only to text-content elements that is the 2nd child of its parent
+const aboutH4 = document.querySelector('section.main-content .top-content .text-content:nth-child(2) > h4');
+aboutH4.textContent = siteContent["main-content"]["about-h4"];
+
+const aboutContent = document.querySelector('section.main-content .top-content .text-content:nth-child(2) > p');
+aboutContent.textContent = siteContent["main-content"]["about-content"];
+
+//Middle Image
+const middleImage = document.getElementById('middle-img');
+middleImage.setAttribute ('src', siteContent["main-content"]["middle-img-src"]);
+
+//Services
+const servicesH4 = document.querySelector('section.main-content .bottom-content .text-content:nth-child(1) > h4');
+servicesH4.textContent = siteContent["main-content"]["services-h4"];
+
+const servicesContent = document.querySelector('section.main-content .bottom-content .text-content:nth-child(1) > p');
+servicesContent.textContent = siteContent["main-content"]["services-content"];
+
+//Product
+const productH4 = document.querySelector('section.main-content .bottom-content .text-content:nth-child(2) > h4');
+productH4.textContent = siteContent["main-content"]["product-h4"];
+
+const productContent = document.querySelector('section.main-content .bottom-content .text-content:nth-child(2) > p');
+productContent.textContent = siteContent["main-content"]["product-content"];
+
+//Vision
+const visionH4 = document.querySelector('section.main-content .bottom-content .text-content:nth-child(3) > h4');
+visionH4.textContent = siteContent["main-content"]["vision-h4"];
+
+const visionContent = document.querySelector('section.main-content .bottom-content .text-content:nth-child(3) > p');
+visionContent.textContent = siteContent["main-content"]["vision-content"];
+
+                           /*********************CONTACT*************************/
+
+const contactH4 = document.querySelector('section.contact h4'); 
+contactH4.textContent = siteContent["contact"]["contact-h4"];
+
+const contactAddress = document.querySelector('section.contact p:nth-child(2)');
+contactAddress.textContent = siteContent["contact"]["address"];
+
+const contactPhoneNumber = document.querySelector('section.contact p:nth-child(3)');
+contactPhoneNumber.textContent = siteContent["contact"]["phone"];
+
+const contactEmail = document.querySelector('section.contact p:nth-child(4)');
+contactEmail.textContent = siteContent["contact"]["email"];
+
+                          /*********************FOOTER*************************/
+                         
+const copyright = document.querySelector('footer p'); 
+copyright.textContent = siteContent["footer"]["copyright"];
+
+
