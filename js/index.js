@@ -27,16 +27,166 @@ const siteContent = {
     "vision-content": "Vision content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
   },
   "contact": {
+    "button-hide": "Hide Address",//added for stretch task
     "contact-h4" : "Contact",
     "address" : "123 Way 456 Street Somewhere, USA",
     "phone" : "1 (888) 888-8888",
     "email" : "sales@greatidea.io",
+    "button-view": "View Address"//added for stretch task
   },
   "footer": {
     "copyright" : "Copyright Great Idea! 2018"
   },
 };
 
+/*********************NAV*************************/
+//returns a node list with all elements matching the query string
+const navigationLinks = document.querySelectorAll('nav a');
+
+//store nav items in the JSON object in an array
+const navValues = Object.values(siteContent.nav);
+
+navigationLinks.forEach( (a , index) => {
+    a.textContent = navValues[index];        
+});
+
+/*Utilize `.appendChild()` and `.prepend()` to add two new items to the navigation system. You can call them 
+whatever you want.*/
+const newNavLink1 = document.createElement('a');//create the new element
+newNavLink1.textContent = "Team";//add text to the new element
+document.querySelector("nav").appendChild(newNavLink1);//add the new element as the last child of an existing element
+
+const newNavLink2 = document.createElement('a');//create the new element
+newNavLink2.textContent = "Innovation";//add text to the new element
+document.querySelector("nav").prepend(newNavLink2);//add the new element as the first element of an existing element
+
+//make navigation links green
+const navigationLinksColor = document.querySelectorAll("nav a");
+
+navigationLinksColor.forEach( a => {     
+  a.style.color = "green";//Change the color of the navigation text to be green. 
+});
+
 // Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+const logo = document.getElementById('logo-img');
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
+
+
+/*********************CTA*************************/
+const ctaH1 = document.querySelector('section.cta .cta-text h1');
+ctaH1.textContent = siteContent["cta"]["h1"];
+
+const ctaButton = document.querySelector('section.cta .cta-text button');
+ctaButton.textContent = siteContent["cta"]["button"];
+
+const ctaImg = document.getElementById('cta-img');
+ctaImg.setAttribute('src', siteContent["cta"]["img-src"]);
+
+
+                            /*********************MAIN CONTENT*************************/
+//Features
+
+//applied only to text-content elements that is the first child of its parent
+const featuresH4 = document.querySelector('.main-content .top-content .text-content:nth-child(1) > h4');
+featuresH4.textContent = siteContent["main-content"]["features-h4"];
+
+const featuresContent = document.querySelector('.main-content .top-content .text-content:nth-child(1) > p');
+featuresContent.textContent = siteContent["main-content"]["features-content"];
+
+
+//About
+
+//applied only to text-content elements that is the 2nd child of its parent
+const aboutH4 = document.querySelector('section.main-content .top-content .text-content:nth-child(2) > h4');
+aboutH4.textContent = siteContent["main-content"]["about-h4"];
+
+const aboutContent = document.querySelector('section.main-content .top-content .text-content:nth-child(2) > p');
+aboutContent.textContent = siteContent["main-content"]["about-content"];
+
+//Middle Image
+const middleImage = document.getElementById('middle-img');
+middleImage.setAttribute ('src', siteContent["main-content"]["middle-img-src"]);
+
+//Services
+const servicesH4 = document.querySelector('section.main-content .bottom-content .text-content:nth-child(1) > h4');
+servicesH4.textContent = siteContent["main-content"]["services-h4"];
+
+const servicesContent = document.querySelector('section.main-content .bottom-content .text-content:nth-child(1) > p');
+servicesContent.textContent = siteContent["main-content"]["services-content"];
+
+//Product
+const productH4 = document.querySelector('section.main-content .bottom-content .text-content:nth-child(2) > h4');
+productH4.textContent = siteContent["main-content"]["product-h4"];
+
+const productContent = document.querySelector('section.main-content .bottom-content .text-content:nth-child(2) > p');
+productContent.textContent = siteContent["main-content"]["product-content"];
+
+//Vision
+const visionH4 = document.querySelector('section.main-content .bottom-content .text-content:nth-child(3) > h4');
+visionH4.textContent = siteContent["main-content"]["vision-h4"];
+
+const visionContent = document.querySelector('section.main-content .bottom-content .text-content:nth-child(3) > p');
+visionContent.textContent = siteContent["main-content"]["vision-content"];
+
+                           /*********************CONTACT*************************/
+const contactH4 = document.querySelector('section.contact h4'); 
+contactH4.textContent = siteContent["contact"]["contact-h4"];
+
+const contactAddress = document.querySelector('section.contact p:nth-child(2)');
+contactAddress.textContent = siteContent["contact"]["address"];
+
+const contactPhoneNumber = document.querySelector('section.contact p:nth-child(3)');
+contactPhoneNumber.textContent = siteContent["contact"]["phone"];
+
+const contactEmail = document.querySelector('section.contact p:nth-child(4)');
+contactEmail.textContent = siteContent["contact"]["email"];
+
+//added for stretch task
+const hideAddressButton = document.querySelector('section.contact button:nth-child(5)');
+hideAddressButton.textContent = siteContent["contact"]["button-hide"];
+
+const viewAddressButton = document.querySelector('section.contact button:nth-child(6)');
+viewAddressButton.textContent = siteContent["contact"]["button-view"];
+
+
+                          /*********************FOOTER*************************/
+                         
+const copyright = document.querySelector('footer p'); 
+copyright.textContent = siteContent["footer"]["copyright"];
+
+
+                          /*********************STRETCH TASK*************************/
+
+/*Study tomorrow's lesson on events and try to integrate a button that can update content on the site with a click of a 
+button.  You could build a similar data object with new values to help you test the click event.*/
+
+//added two buttons with event listeners that when clicked will either hide or display the address 
+const hideAddress = document.getElementById("hide-button");
+
+const viewAddress = document.getElementById("view-button");
+viewAddress.disabled = true;
+
+const hideText = () => {
+    hideAddress.disabled = true;
+    contactH4.style.display = "none";
+    contactAddress.style.display = "none";
+    contactPhoneNumber.style.display = "none";
+    contactEmail.style.display = "none"; 
+    viewAddress.disabled = false;   
+
+};
+
+const viewText = () => {
+    hideAddress.disabled = false;
+    contactH4.style.display = "block";
+    contactAddress.style.display = "block";
+    contactPhoneNumber.style.display = "block";
+    contactEmail.style.display = "block";
+    viewAddress.style.display = "inline-block";
+    viewAddress.disabled = true;
+}
+
+hideAddressButton.addEventListener('click', hideText);
+
+viewAddressButton.addEventListener('click', viewText);
+
